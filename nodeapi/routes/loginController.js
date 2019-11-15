@@ -1,7 +1,7 @@
 'use strict';
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcrypt');
-const JWT = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 // Creamos un controller que nos servirá para asociar rutas en app.js
 

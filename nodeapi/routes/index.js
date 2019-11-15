@@ -1,8 +1,18 @@
 var express = require('express');
 var router = express.Router();
+const basicAuth = require('basic-auth');
 
 // object destructuring
 const { query, body, param, validationResult } = require('express-validator');
+
+router.use(function(req, res, next) {
+  var user = basicAuth(req);
+  if(!user || user.name !== 'user' || user.pass !== 'pass') {
+    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+    return res.sendStatus(401);
+  }
+  next();
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
